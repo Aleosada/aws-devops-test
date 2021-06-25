@@ -142,12 +142,6 @@ resource "aws_route" "web-route-igw-ipv6" {
   gateway_id                = aws_internet_gateway.web-igw.id
 }
 
-resource "aws_route" "route-web-shared" {
-  route_table_id            = aws_route_table.web-rtb.id
-  destination_cidr_block    = var.shared_network_address_space[terraform.workspace]
-  vpc_peering_connection_id = aws_vpc_peering_connection.vpc_peering_shared_web.id
-}
-
 resource "aws_route_table_association" "rta-subnet" {
   count          = var.web_subnet_count[terraform.workspace]
   subnet_id      = aws_subnet.web-subnet[count.index % var.web_subnet_count[terraform.workspace]].id
