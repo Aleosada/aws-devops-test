@@ -132,7 +132,7 @@ resource "aws_route_table" "web-rtb" {
 
 resource "aws_route" "web-route-igw" {
   route_table_id            = aws_route_table.web-rtb.id
-  destination_cidr_block    = "0.0.0.0/"
+  destination_cidr_block    = "0.0.0.0/0"
   gateway_id                = aws_internet_gateway.web-igw.id
 }
 
